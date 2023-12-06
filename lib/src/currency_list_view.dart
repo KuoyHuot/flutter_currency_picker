@@ -123,16 +123,17 @@ class _CurrencyListViewState extends State<CurrencyListView> {
           child: widget.showSearchField
               ? TextField(
                   controller: _searchController,
-                  decoration: widget.theme?.inputDecoration ?? InputDecoration(
-                    labelText: widget.searchHint ?? "Search",
-                    hintText: widget.searchHint ?? "Search",
-                    prefixIcon: const Icon(Icons.search),
-                    border: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: const Color(0xFF8C98A8).withOpacity(0.2),
+                  decoration: widget.theme?.inputDecoration ??
+                      InputDecoration(
+                        labelText: widget.searchHint ?? "Search",
+                        hintText: widget.searchHint ?? "Search",
+                        prefixIcon: const Icon(Icons.search),
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: const Color(0xFF8C98A8).withOpacity(0.2),
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
                   onChanged: _filterSearchResults,
                 )
               : Container(),
@@ -148,7 +149,7 @@ class _CurrencyListViewState extends State<CurrencyListView> {
                   child: Divider(thickness: 1),
                 ),
               ],
-              ..._filteredList.map<Widget>((currency) => _listRow(currency))
+              ..._filteredList.map<Widget>((currency) => _listRow(currency)),
             ],
           ),
         ),
@@ -203,7 +204,7 @@ class _CurrencyListViewState extends State<CurrencyListView> {
                                   ? subtitleTextStyle
                                   : titleTextStyle,
                             ),
-                          ]
+                          ],
                         ],
                       ),
                     ),

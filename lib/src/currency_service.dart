@@ -23,6 +23,21 @@ class CurrencyService {
         .firstWhereOrNull((currency) => currency.code == uppercaseCode);
   }
 
+  ///Returns the first currency that mach the given locale.
+  Currency? findByLocale(String? locale) {
+    return _currencies
+        .firstWhereOrNull((currency) => currency.locale == locale);
+  }
+
+  ///Returns the first currency that mach the given locale.
+  Currency? findByCodeAndLocale({
+    required String? code,
+    required String? locale,
+  }) =>
+      _currencies.firstWhereOrNull(
+        (currency) => currency.code == code && currency.locale == locale,
+      );
+
   ///Returns the first currency that mach the given name.
   Currency? findByName(String? name) {
     return _currencies.firstWhereOrNull((currency) => currency.name == name);

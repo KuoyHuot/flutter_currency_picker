@@ -43,12 +43,6 @@ class CurrencyService {
     return _currencies.firstWhereOrNull((currency) => currency.name == name);
   }
 
-  ///Returns the first currency that mach the given number.
-  Currency? findByNumber(int? number) {
-    return _currencies
-        .firstWhereOrNull((currency) => currency.number == number);
-  }
-
   ///Returns a list with all the currencies that mach the given codes list.
   List<Currency> findCurrenciesByCode(List<String> codes) {
     final List<String> _codes =

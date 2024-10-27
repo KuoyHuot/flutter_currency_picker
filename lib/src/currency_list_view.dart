@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'currency.dart';
 import 'currency_picker_theme_data.dart';
 import 'currency_service.dart';
-import 'currency_utils.dart';
 
 class CurrencyListView extends StatefulWidget {
   /// Called when a currency is select.
@@ -243,7 +242,7 @@ class _CurrencyListViewState extends State<CurrencyListView> {
     }
 
     return Text(
-      CurrencyUtils.currencyToEmoji(currency),
+      currency.flag!,
       style: TextStyle(
         fontSize: widget.theme?.flagSize ?? 25,
       ),

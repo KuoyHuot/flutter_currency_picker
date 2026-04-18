@@ -7,9 +7,9 @@ class CurrencyService {
   final List<Currency> _currencies;
 
   CurrencyService()
-      : _currencies = currencies
-            .map((currency) => Currency.from(json: currency))
-            .toList();
+    : _currencies = currencies
+          .map((currency) => Currency.from(json: currency))
+          .toList();
 
   ///Return list with all currencies
   List<Currency> getAll() {
@@ -18,25 +18,35 @@ class CurrencyService {
 
   ///Returns the first currency that mach the given code.
   Currency? findByCode(String? code) {
-    final uppercaseCode = code?.toUpperCase();
-    return _currencies
-        .firstWhereOrNull((currency) => currency.code == uppercaseCode);
+    String? uppercaseCode = code?.toUpperCase();
+    if (uppercaseCode == 'VEF') uppercaseCode = 'VES'; // Venezuela fix
+    if (uppercaseCode == 'ZWL') uppercaseCode = 'ZIG'; // Zimbabwe fix
+
+    return _currencies.firstWhereOrNull(
+      (currency) => currency.code == uppercaseCode,
+    );
   }
 
   ///Returns the first currency that mach the given locale.
   Currency? findByLocale(String? locale) {
-    return _currencies
-        .firstWhereOrNull((currency) => currency.locale == locale);
+    return _currencies.firstWhereOrNull(
+      (currency) => currency.locale == locale,
+    );
   }
 
   ///Returns the first currency that mach the given locale.
   Currency? findByCodeAndLocale({
     required String? code,
     required String? locale,
-  }) =>
-      _currencies.firstWhereOrNull(
-        (currency) => currency.code == code && currency.locale == locale,
-      );
+  }) {
+    String? uppercaseCode = code?.toUpperCase();
+    if (uppercaseCode == 'VEF') uppercaseCode = 'VES'; // Venezuela fix
+    if (uppercaseCode == 'ZWL') uppercaseCode = 'ZIG'; // Zimbabwe fix
+
+    return _currencies.firstWhereOrNull((currency) {
+      return currency.code == uppercaseCode && currency.locale == locale;
+    });
+  }
 
   ///Returns the first currency that mach the given name.
   Currency? findByName(String? name) {
@@ -45,8 +55,13 @@ class CurrencyService {
 
   ///Returns a list with all the currencies that mach the given codes list.
   List<Currency> findCurrenciesByCode(List<String> codes) {
-    final List<String> _codes =
-        codes.map((code) => code.toUpperCase()).toList();
+    final List<String> _codes = codes.map((code) {
+      String uppercaseCode = code.toUpperCase();
+      if (uppercaseCode == 'VEF') uppercaseCode = 'VES'; // Venezuela fix
+      if (uppercaseCode == 'ZWL') uppercaseCode = 'ZIG'; // Zimbabwe fix
+
+      return uppercaseCode;
+    }).toList();
     final List<Currency> currencies = [];
     for (final code in _codes) {
       final Currency? currency = findByCode(code);

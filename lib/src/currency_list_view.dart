@@ -55,7 +55,7 @@ class CurrencyListView extends StatefulWidget {
   final CurrencyPickerThemeData? theme;
 
   const CurrencyListView({
-    Key? key,
+    super.key,
     required this.onSelect,
     this.favorite,
     this.currencyFilter,
@@ -67,7 +67,7 @@ class CurrencyListView extends StatefulWidget {
     this.physics,
     this.controller,
     this.theme,
-  }) : super(key: key);
+  });
 
   @override
   _CurrencyListViewState createState() => _CurrencyListViewState();
@@ -91,11 +91,13 @@ class _CurrencyListViewState extends State<CurrencyListView> {
     _filteredList = <Currency>[];
 
     if (widget.currencyFilter != null) {
-      final List<String> currencyFilter =
-          widget.currencyFilter!.map((code) => code.toUpperCase()).toList();
+      final List<String> currencyFilter = widget.currencyFilter!
+          .map((code) => code.toUpperCase())
+          .toList();
 
-      _currencyList
-          .removeWhere((element) => !currencyFilter.contains(element.code));
+      _currencyList.removeWhere(
+        (element) => !currencyFilter.contains(element.code),
+      );
     }
 
     if (widget.favorite != null) {
@@ -122,14 +124,15 @@ class _CurrencyListViewState extends State<CurrencyListView> {
           child: widget.showSearchField
               ? TextField(
                   controller: _searchController,
-                  decoration: widget.theme?.inputDecoration ??
+                  decoration:
+                      widget.theme?.inputDecoration ??
                       InputDecoration(
                         labelText: widget.searchHint ?? "Search",
                         hintText: widget.searchHint ?? "Search",
                         prefixIcon: const Icon(Icons.search),
                         border: OutlineInputBorder(
                           borderSide: BorderSide(
-                            color: const Color(0xFF8C98A8).withOpacity(0.2),
+                            color: const Color(0xFF8C98A8).withAlpha(200),
                           ),
                         ),
                       ),
@@ -191,10 +194,7 @@ class _CurrencyListViewState extends State<CurrencyListView> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           if (widget.showCurrencyCode) ...[
-                            Text(
-                              currency.code,
-                              style: titleTextStyle,
-                            ),
+                            Text(currency.code, style: titleTextStyle),
                           ],
                           if (widget.showCurrencyName) ...[
                             Text(
@@ -212,10 +212,7 @@ class _CurrencyListViewState extends State<CurrencyListView> {
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: Text(
-                  currency.symbol,
-                  style: currencySignTextStyle,
-                ),
+                child: Text(currency.symbol, style: currencySignTextStyle),
               ),
             ],
           ),
@@ -243,9 +240,7 @@ class _CurrencyListViewState extends State<CurrencyListView> {
 
     return Text(
       currency.flag!,
-      style: TextStyle(
-        fontSize: widget.theme?.flagSize ?? 25,
-      ),
+      style: TextStyle(fontSize: widget.theme?.flagSize ?? 25),
     );
   }
 

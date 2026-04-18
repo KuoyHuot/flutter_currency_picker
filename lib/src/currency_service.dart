@@ -23,7 +23,7 @@ class CurrencyService {
     if (uppercaseCode == 'ZWL') uppercaseCode = 'ZIG'; // Zimbabwe fix
 
     return _currencies.firstWhereOrNull(
-      (currency) => currency.code == uppercaseCode,
+      (currency) => currency.code.toUpperCase() == uppercaseCode,
     );
   }
 
@@ -44,7 +44,8 @@ class CurrencyService {
     if (uppercaseCode == 'ZWL') uppercaseCode = 'ZIG'; // Zimbabwe fix
 
     return _currencies.firstWhereOrNull((currency) {
-      return currency.code == uppercaseCode && currency.locale == locale;
+      return currency.code.toUpperCase() == uppercaseCode &&
+          currency.locale == locale;
     });
   }
 

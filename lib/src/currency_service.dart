@@ -20,7 +20,7 @@ class CurrencyService {
   Currency? findByCode(String? code) {
     String? uppercaseCode = code?.toUpperCase();
     if (uppercaseCode == 'VEF') uppercaseCode = 'VES'; // Venezuela fix
-    if (uppercaseCode == 'ZWL') uppercaseCode = 'ZIG'; // Zimbabwe fix
+    if (uppercaseCode == 'ZWL') uppercaseCode = 'ZWG'; // Zimbabwe fix
 
     return _currencies.firstWhereOrNull(
       (currency) => currency.code.toUpperCase() == uppercaseCode,
@@ -41,7 +41,7 @@ class CurrencyService {
   }) {
     String? uppercaseCode = code?.toUpperCase();
     if (uppercaseCode == 'VEF') uppercaseCode = 'VES'; // Venezuela fix
-    if (uppercaseCode == 'ZWL') uppercaseCode = 'ZIG'; // Zimbabwe fix
+    if (uppercaseCode == 'ZWL') uppercaseCode = 'ZWG'; // Zimbabwe fix
 
     return _currencies.firstWhereOrNull((currency) {
       return currency.code.toUpperCase() == uppercaseCode &&
@@ -59,7 +59,7 @@ class CurrencyService {
     final List<String> _codes = codes.map((code) {
       String uppercaseCode = code.toUpperCase();
       if (uppercaseCode == 'VEF') uppercaseCode = 'VES'; // Venezuela fix
-      if (uppercaseCode == 'ZWL') uppercaseCode = 'ZIG'; // Zimbabwe fix
+      if (uppercaseCode == 'ZWL') uppercaseCode = 'ZWG'; // Zimbabwe fix
 
       return uppercaseCode;
     }).toList();

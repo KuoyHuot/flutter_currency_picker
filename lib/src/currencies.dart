@@ -690,7 +690,7 @@ List<Map<String, dynamic>> currencies = [
     "locale": "fr_CI",
     "name": "West African CFA franc",
     "symbol": "FCFA",
-    "flag": "xof.png",
+    "flag": "🇨🇮",
     "decimal_digits": 0,
     "thousands_separator": " ",
     "decimal_separator": ",",
